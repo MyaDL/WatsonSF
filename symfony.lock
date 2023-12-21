@@ -8,7 +8,7 @@
             "ref": "a2759dd6123694c8d901d0ec80006e044c2e6457"
         },
         "files": [
-            "config/routes/annotations.yaml"
+            "./config/routes/annotations.yaml"
         ]
     },
     "doctrine/doctrine-bundle": {
@@ -20,9 +20,9 @@
             "ref": "013b823e7fee65890b23e40f31e6667a1ac519ac"
         },
         "files": [
-            "config/packages/doctrine.yaml",
-            "src/Entity/.gitignore",
-            "src/Repository/.gitignore"
+            "./config/packages/doctrine.yaml",
+            "./src/Entity/.gitignore",
+            "./src/Repository/.gitignore"
         ]
     },
     "doctrine/doctrine-fixtures-bundle": {
@@ -34,7 +34,7 @@
             "ref": "1f5514cfa15b947298df4d771e694e578d4c204d"
         },
         "files": [
-            "src/DataFixtures/AppFixtures.php"
+            "./src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -46,8 +46,8 @@
             "ref": "1d01ec03c6ecbd67c3375c5478c9a423ae5d6a33"
         },
         "files": [
-            "config/packages/doctrine_migrations.yaml",
-            "migrations/.gitignore"
+            "./config/packages/doctrine_migrations.yaml",
+            "./migrations/.gitignore"
         ]
     },
     "easycorp/easyadmin-bundle": {
@@ -68,7 +68,7 @@
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         },
         "files": [
-            "config/packages/sensio_framework_extra.yaml"
+            "./config/packages/sensio_framework_extra.yaml"
         ]
     },
     "symfony/apache-pack": {
@@ -80,7 +80,7 @@
             "ref": "efb318193e48384eb5c5aadff15396ed698f8ffc"
         },
         "files": [
-            "public/.htaccess"
+            "./public/.htaccess"
         ]
     },
     "symfony/console": {
@@ -157,7 +157,7 @@
             "ref": "98f1f2b0d635908c2b40f3675da2d23b1a069d30"
         },
         "files": [
-            "config/packages/security.yaml"
+            "./config/packages/security.yaml"
         ]
     },
     "symfony/translation": {
@@ -182,8 +182,8 @@
             "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
         },
         "files": [
-            "config/packages/twig.yaml",
-            "templates/base.html.twig"
+            "./config/packages/twig.yaml",
+            "./templates/base.html.twig"
         ]
     },
     "symfony/validator": {
@@ -195,7 +195,7 @@
             "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
         },
         "files": [
-            "config/packages/validator.yaml"
+            "./config/packages/validator.yaml"
         ]
     },
     "symfony/web-profiler-bundle": {
@@ -207,8 +207,8 @@
             "ref": "24bbc3d84ef2f427f82104f766014e799eefcc3e"
         },
         "files": [
-            "config/packages/web_profiler.yaml",
-            "config/routes/web_profiler.yaml"
+            "./config/packages/web_profiler.yaml",
+            "./config/routes/web_profiler.yaml"
         ]
     },
     "twig/extra-bundle": {
