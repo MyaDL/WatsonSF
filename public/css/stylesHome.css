@@ -1,0 +1,161 @@
+body{
+    background-image: url("../images/wallapper.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.navbar-content{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.left-nav, .right-nav{
+    display: flex;
+}
+
+.formContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.content{
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+#registration_form_agreeTerms, #link_state{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.actionFormLink a{
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.creatorContainer{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.creator{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: center;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.creator p {
+    margin-bottom: 0;
+}
+
+.creator:hover{
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+}
+
+.creator i{
+    font-size: 20pt;
+}
+
+#menuStylax{
+    width: 600px;
+    height: 60px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#menuStylax li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#menuStylax li i{
+    font-size: 20pt;
+}
+
+#menuStylax .icon{
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+#menuStylax .icon:hover {
+    transform: scale(1.2);
+}
+
+#menuStylax .icon:not(:hover) {
+    transform: scale(1);
+}
+
+.note_icon{
+    background-image: url("../images/note_icon.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.chrome_icon{
+    background-image: url("../images/chrome_icon.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.folder_icon{
+    background-image: url("../images/folder_icon.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.photo_icon{
+    background-image: url("../images/photo_icon.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.saphari_icon{
+    background-image: url("../images/saphari_icon.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.trash_icon{
+    background-image: url("../images/trash_icon.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}

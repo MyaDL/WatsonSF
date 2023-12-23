@@ -1,19 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.home.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark p-1">
+  <a class="navbar-brand" href="{{ path('app_home') }}">WatsonSF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto navbar-content">
+        <div class="left-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_home') }}"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
+            </li>
+        </div>
+        <div class="right-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Connexion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('app_register') }}"><i class="fa fa-pen" aria-hidden="true"></i> Inscription</a>
+            </li>
+       </div>
+    </ul>
+  </div>
+</nav>
+<div class="container formContent">
+    <div class="content">
+        <h1 class="h3 mb-3 font-weight-normal text-center">Inscrivez-vous</h1>
+        {{ form_errors(registrationForm) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Mot de passe'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms, {
+                label: 'Accepter les conditions d\'utilisation'
+            }) }}
+
+            <button class="btn btn-lg btn-primary mt-2 w-100" type="submit"><i class="fa fa-pen" aria-hidden="true"></i> S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
+</div>
 {% endblock %}

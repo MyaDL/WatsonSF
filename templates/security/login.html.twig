@@ -1,31 +1,51 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.home.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark p-1">
+  <a class="navbar-brand" href="{{ path('app_home') }}">WatsonSF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto navbar-content">
+        <div class="left-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('app_home') }}"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
+            </li>
         </div>
-    {% endif %}
+        <div class="right-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Connexion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register') }}"><i class="fa fa-pen" aria-hidden="true"></i> Inscription</a>
+            </li>
+       </div>
+    </ul>
+  </div>
+</nav>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+<div class="container formContent">
+    <form method="post" class="content">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <h1 class="h3 mb-3 font-weight-normal text-center">Connectez-vous</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+        <label for="inputPassword" class="mt-2">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <button class="btn btn-lg btn-primary mt-2" type="submit"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Se connecter</button>
+    </form>
+</div>
 {% endblock %}
