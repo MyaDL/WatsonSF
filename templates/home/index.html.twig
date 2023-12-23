@@ -1,6 +1,6 @@
 {% extends 'base.home.html.twig' %}
 
-{% block title %}Ajouter un lien{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark p-1">
@@ -12,8 +12,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto navbar-content">
         <div class="left-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_home') }}"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+            <li class="nav-item active">
+                <a class="nav-link active" href="{{ path('app_home') }}"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
@@ -39,14 +39,28 @@
     </ul>
   </div>
 </nav>
-<div class="container formContent">
-    <div class="content">
-        <h1 class="text-center">Ajouter un lien</h1>
-
-        {{ include('link/_form.html.twig') }}
-
-        <a href="{{ path('app_link_index') }}"><button class="btn btn-light mt-2 w-100"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour à la liste</button></a>
-
+<div class="creatorContainer">
+    <div class="creator">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <p>Mya Dumas</p>
+    </div>
+    <div class="creator">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <p>Maxime Canac</p>
+    </div>
+    <div class="creator">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <p>Bryan Gast</p>
     </div>
 </div>
+
+<div id="menuStylax">
+    <li><span class="icon note_icon"></span></li>
+    <li><span class="icon photo_icon"></span></li>
+    <li><span class="icon saphari_icon"></span></li>
+    <li><span class="icon chrome_icon"></span></li>
+    <li><span class="icon folder_icon"></span></li>
+    <li><span class="icon trash_icon"></span></li>
+</div>
+
 {% endblock %}

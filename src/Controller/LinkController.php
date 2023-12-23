@@ -17,8 +17,24 @@ class LinkController extends AbstractController
     #[Route('/', name: 'app_link_index', methods: ['GET'])]
     public function index(LinkRepository $linkRepository): Response
     {
+
+        $user = $this->getUser();
+        $userEmail = null;
+        $adminRole = false;
+
+        if ($user) {
+            $userEmail = $user->getEmail();
+            $userRoles = $user->getRoles();
+
+            if(in_array('ROLE_ADMIN', $userRoles)){
+                $adminRole = true;
+            }
+        }
+        
         return $this->render('link/index.html.twig', [
             'links' => $linkRepository->findAll(),
+            'user_email' => $userEmail,
+            'admin_role' => $adminRole,
         ]);
     }
 
@@ -36,9 +52,26 @@ class LinkController extends AbstractController
             return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $user = $this->getUser();
+        $userEmail = null;
+        $adminRole = false;
+        $isUpdate = false;
+
+        if ($user) {
+            $userEmail = $user->getEmail();
+            $userRoles = $user->getRoles();
+
+            if(in_array('ROLE_ADMIN', $userRoles)){
+                $adminRole = true;
+            }
+        }
+
         return $this->renderForm('link/new.html.twig', [
             'link' => $link,
             'form' => $form,
+            'user_email' => $userEmail,
+            'admin_role' => $adminRole,
+            'isUpdate' => $isUpdate,
         ]);
     }
 
@@ -62,9 +95,26 @@ class LinkController extends AbstractController
             return $this->redirectToRoute('app_link_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        $user = $this->getUser();
+        $userEmail = null;
+        $adminRole = false;
+        $isUpdate = true;
+
+        if ($user) {
+            $userEmail = $user->getEmail();
+            $userRoles = $user->getRoles();
+
+            if(in_array('ROLE_ADMIN', $userRoles)){
+                $adminRole = true;
+            }
+        }
+
         return $this->renderForm('link/edit.html.twig', [
             'link' => $link,
             'form' => $form,
+            'user_email' => $userEmail,
+            'admin_role' => $adminRole,
+            'isUpdate' => $isUpdate,
         ]);
     }
 
