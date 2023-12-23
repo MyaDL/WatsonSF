@@ -18,6 +18,11 @@
             <li class="nav-item active">
                 <a class="nav-link active" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
             </li>
+            {% if admin_role is same as(true) %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Pannel d'administration</a>
+            </li>
+            {% endif %}
         </div>
         <div class="right-nav">
         {% if user_email is not null %}
