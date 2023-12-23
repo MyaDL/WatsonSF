@@ -78,8 +78,23 @@ class LinkController extends AbstractController
     #[Route('/{id}', name: 'app_link_show', methods: ['GET'])]
     public function show(Link $link): Response
     {
+        $user = $this->getUser();
+        $userEmail = null;
+        $adminRole = false;
+
+        if ($user) {
+            $userEmail = $user->getEmail();
+            $userRoles = $user->getRoles();
+
+            if(in_array('ROLE_ADMIN', $userRoles)){
+                $adminRole = true;
+            }
+        }
+
         return $this->render('link/show.html.twig', [
             'link' => $link,
+            'user_email' => $userEmail,
+            'admin_role' => $adminRole,
         ]);
     }
 

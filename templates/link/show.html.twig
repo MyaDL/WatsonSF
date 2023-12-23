@@ -1,18 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.home.html.twig' %}
 
-{% block title %}Link{% endblock %}
+{% block title %}Voir un lien{% endblock %}
 
 {% block body %}
-    <h1>Link</h1>
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark p-1">
+  <a class="navbar-brand" href="{{ path('app_home') }}">WatsonSF</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <table class="table">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto navbar-content">
+        <div class="left-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_home') }}"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
+            </li>
+            {% if admin_role is same as(true) %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Pannel d'administration</a>
+            </li>
+            {% endif %}
+        </div>
+        <div class="right-nav">
+        {% if user_email is not null %}
+            <li class="nav-item">
+                <span class="text-light nav-link">Bonjour, {{ user_email }} ! {% if admin_role is same as(true) %}<span class="text-success">[Administrateur]</span>{% endif %}</span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-danger" href="{{ path('app_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Déconnexion</a>
+            </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Connexion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_register') }}"><i class="fa fa-pen" aria-hidden="true"></i> Inscription</a>
+                </li>
+            {% endif %}
+       </div>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-3">
+    <table class="table table-dark">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ link.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ link.title }}</td>
             </tr>
             <tr>
@@ -24,15 +64,13 @@
                 <td>{{ link.description }}</td>
             </tr>
             <tr>
-                <th>State</th>
+                <th>État</th>
                 <td>{{ link.state ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_link_index') }}">back to list</a>
-
-    <a href="{{ path('app_link_edit', {'id': link.id}) }}">edit</a>
-
-    {{ include('link/_delete_form.html.twig') }}
+    <a href="{{ path('app_link_edit', {'id': link.id}) }}"><button class="btn btn-success mt-2 w-100"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</button></a>
+    <a href="{{ path('app_link_index') }}"><button class="btn btn-light mt-2 w-100"><i class="fa fa-arrow-left" aria-hidden="true"></i> Retour à la liste</button></a>
+</div>
 {% endblock %}
