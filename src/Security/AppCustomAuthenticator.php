@@ -50,19 +50,18 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
         $user = $token->getUser();
 
-        if ($user instanceof \Symfony\Component\Security\Core\User\UserInterface) {
+        if ($user instanceof User) {
 
             $roles = $user->getRoles();
-    
+
             if (in_array('ROLE_ADMIN', $roles, true)) {
                 return new RedirectResponse($this->urlGenerator->generate('admin'));
-            }else{
+            } elseif (in_array('ROLE_USER', $roles, true)) {
                 return new RedirectResponse($this->urlGenerator->generate('app_home'));
             }
-
-        } else {
-            return new RedirectResponse($this->urlGenerator->generate('app_home'));
         }
+
+        return new RedirectResponse($this->urlGenerator->generate('app_home'));
         
     }
 

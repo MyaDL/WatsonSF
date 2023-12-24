@@ -63,7 +63,6 @@ class UserCrudController extends AbstractCrudController
 
     private function encodePassword(User $user, string $plainPassword): string
     {
-        // Remplacez cette logique par l'encodage de mot de passe approprié
         return password_hash($plainPassword, PASSWORD_DEFAULT);
     }
 }

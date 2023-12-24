@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/link')]
 class LinkController extends AbstractController
@@ -20,25 +21,19 @@ class LinkController extends AbstractController
 
         $user = $this->getUser();
         $userEmail = null;
-        $adminRole = false;
 
         if ($user) {
             $userEmail = $user->getEmail();
-            $userRoles = $user->getRoles();
-
-            if(in_array('ROLE_ADMIN', $userRoles)){
-                $adminRole = true;
-            }
         }
         
         return $this->render('link/index.html.twig', [
             'links' => $linkRepository->findAll(),
             'user_email' => $userEmail,
-            'admin_role' => $adminRole,
         ]);
     }
 
     #[Route('/new', name: 'app_link_new', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_USER")]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $link = new Link();
@@ -54,23 +49,16 @@ class LinkController extends AbstractController
 
         $user = $this->getUser();
         $userEmail = null;
-        $adminRole = false;
         $isUpdate = false;
 
         if ($user) {
             $userEmail = $user->getEmail();
-            $userRoles = $user->getRoles();
-
-            if(in_array('ROLE_ADMIN', $userRoles)){
-                $adminRole = true;
-            }
         }
 
         return $this->renderForm('link/new.html.twig', [
             'link' => $link,
             'form' => $form,
             'user_email' => $userEmail,
-            'admin_role' => $adminRole,
             'isUpdate' => $isUpdate,
         ]);
     }
@@ -80,25 +68,19 @@ class LinkController extends AbstractController
     {
         $user = $this->getUser();
         $userEmail = null;
-        $adminRole = false;
 
         if ($user) {
             $userEmail = $user->getEmail();
-            $userRoles = $user->getRoles();
-
-            if(in_array('ROLE_ADMIN', $userRoles)){
-                $adminRole = true;
-            }
         }
 
         return $this->render('link/show.html.twig', [
             'link' => $link,
             'user_email' => $userEmail,
-            'admin_role' => $adminRole,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_link_edit', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_USER")]
     public function edit(Request $request, Link $link, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(LinkType::class, $link);
@@ -112,28 +94,22 @@ class LinkController extends AbstractController
 
         $user = $this->getUser();
         $userEmail = null;
-        $adminRole = false;
         $isUpdate = true;
 
         if ($user) {
             $userEmail = $user->getEmail();
-            $userRoles = $user->getRoles();
-
-            if(in_array('ROLE_ADMIN', $userRoles)){
-                $adminRole = true;
-            }
         }
 
         return $this->renderForm('link/edit.html.twig', [
             'link' => $link,
             'form' => $form,
             'user_email' => $userEmail,
-            'admin_role' => $adminRole,
             'isUpdate' => $isUpdate,
         ]);
     }
 
     #[Route('/{id}', name: 'app_link_delete', methods: ['POST'])]
+    #[IsGranted("ROLE_USER")]
     public function delete(Request $request, Link $link, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$link->getId(), $request->request->get('_token'))) {

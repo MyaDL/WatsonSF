@@ -18,16 +18,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
             </li>
-            {% if admin_role is same as(true) %}
+            {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Pannel d'administration</a>
             </li>
             {% endif %}
         </div>
         <div class="right-nav">
-        {% if user_email is not null %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
-                <span class="text-light nav-link">Bonjour, {{ user_email }} ! {% if admin_role is same as(true) %}<span class="text-success">[Administrateur]</span>{% endif %}</span>
+                <span class="text-light nav-link">Bonjour, {{ user_email }} ! {% if is_granted('ROLE_ADMIN') %}<span class="text-success">[Administrateur]</span>{% endif %}</span>
             </li>
             <li class="nav-item">
                 <a class="nav-link link-danger" href="{{ path('app_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Déconnexion</a>

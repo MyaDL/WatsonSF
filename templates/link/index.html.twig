@@ -18,16 +18,16 @@
             <li class="nav-item active">
                 <a class="nav-link active" href="{{ path('app_link_index') }}"><i class="fas fa-link" aria-hidden="true"></i> Liens</a>
             </li>
-            {% if admin_role is same as(true) %}
+            {% if is_granted('ROLE_ADMIN') %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('admin') }}"><i class="fa fa-cogs" aria-hidden="true"></i> Pannel d'administration</a>
             </li>
             {% endif %}
         </div>
         <div class="right-nav">
-        {% if user_email is not null %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li class="nav-item">
-                <span class="text-light nav-link">Bonjour, {{ user_email }} ! {% if admin_role is same as(true) %}<span class="text-success">[Administrateur]</span>{% endif %}</span>
+                <span class="text-light nav-link">Bonjour, {{ user_email }} ! {% if is_granted('ROLE_ADMIN') %}<span class="text-success">[Administrateur]</span>{% endif %}</span>
             </li>
             <li class="nav-item">
                 <a class="nav-link link-danger" href="{{ path('app_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Déconnexion</a>
@@ -53,7 +53,9 @@
                 <th>Url</th>
                 <th>Description</th>
                 <th>État</th>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -64,10 +66,12 @@
                 <td>{{ link.url }}</td>
                 <td>{{ link.description }}</td>
                 <td>{{ link.state ? 'Yes' : 'No' }}</td>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <td class="actionFormLink">
                     <a href="{{ path('app_link_show', {'id': link.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i> Voir</a>
                     <a href="{{ path('app_link_edit', {'id': link.id}) }}"><i class="fa fa-edit" aria-hidden="true"></i> Modifier</a>
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -76,6 +80,8 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <a href="{{ path('app_link_new') }}"><button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un lien</button></a>  
+    {% endif %}
 </div>
 {% endblock %}

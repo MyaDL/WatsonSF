@@ -20,16 +20,8 @@ class RegistrationController extends AbstractController
     {
 
         if ($this->getUser()) {
-
             $user = $this->getUser();
-            $roles = $user->getRoles();
-
-            if (in_array('ROLE_ADMIN', $roles, true)) {
-                return $this->redirectToRoute('admin');
-            }else{
-                return $this->redirectToRoute('app_home');
-            }
-
+            return $this->redirectToRoute('app_home');
         }
 
         $user = new User();

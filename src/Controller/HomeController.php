@@ -14,21 +14,14 @@ class HomeController extends AbstractController
 
         $user = $this->getUser();
         $userEmail = null;
-        $adminRole = false;
 
         if ($user) {
             $userEmail = $user->getEmail();
-            $userRoles = $user->getRoles();
-
-            if(in_array('ROLE_ADMIN', $userRoles)){
-                $adminRole = true;
-            }
         }
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'user_email' => $userEmail,
-            'admin_role' => $adminRole,
         ]);
     }
 }
