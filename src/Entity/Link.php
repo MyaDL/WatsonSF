@@ -6,6 +6,7 @@ use App\Repository\LinkRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Table(name: "link")]
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
 class Link
 {
